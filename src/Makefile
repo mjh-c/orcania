@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public
 # License along with this library.	If not, see <http://www.gnu.org/licenses/>.
 #
-DESTDIR=/usr/local
+DESTDIR=$(CAPS_HOME)
 ORCANIA_INCLUDE=../include
 CONFIG_TEMPLATE=$(ORCANIA_INCLUDE)/orcania-cfg.h.in
 CONFIG_FILE=$(ORCANIA_INCLUDE)/orcania-cfg.h
@@ -65,7 +65,7 @@ install: all
 	install $(OUTPUT).$(VERSION) $(DESTDIR)/lib
 	install -m644 ../include/orcania.h $(DESTDIR)/include
 	install -m644 $(CONFIG_FILE) $(DESTDIR)/include
-	-ldconfig
+	/sbin/ldconfig -r $CAPS_HOME -N -v
 
 static-install: static
 	install liborcania.a $(DESTDIR)/lib
