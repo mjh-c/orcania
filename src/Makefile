@@ -23,7 +23,7 @@ PROJECT_DESCRIPTION=Potluck with different functions for different purposes that
 PROJECT_BUGREPORT_PATH=https://github.com/babelouest/orcania/issues
 PKGCONF_REQ=
 PKGCONF_REQ_PRIVATE=
-DESTDIR=/usr/local
+DESTDIR=$(CAPS_HOME)
 ORCANIA_INCLUDE=../include
 CONFIG_TEMPLATE=$(ORCANIA_INCLUDE)/orcania-cfg.h.in
 CONFIG_FILE=$(ORCANIA_INCLUDE)/orcania-cfg.h
@@ -92,7 +92,7 @@ install: all $(PKGCONFIG_FILE)
 	install -m644 $(PKGCONFIG_FILE) $(DESTDIR)/lib/pkgconfig
 	install -m644 ../include/orcania.h $(DESTDIR)/include
 	install -m644 $(CONFIG_FILE) $(DESTDIR)/include
-	-ldconfig
+	/sbin/ldconfig -r $(CAPS_HOME) -N -v
 
 static-install: static
 	install liborcania.a $(DESTDIR)/lib
